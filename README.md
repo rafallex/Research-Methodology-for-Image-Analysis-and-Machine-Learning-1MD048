@@ -17,6 +17,12 @@ The masks come from the course (distributed through Studium), so this repo is th
 
 On the susceptible dataset the ratio-threshold method (0.95) gave the earliest stable call at 670 min (≈11.2 h), with REF/RIF growth rates of k = 0.00089 vs 0.00029 min⁻¹ and about 68% growth inhibition.
 
+![TTD analysis summary](figures/ttd_summary.png)
+*The full picture: growth curves for control vs rifampicin, normalised divergence, the relative-difference signal crossing threshold at 670 min, and the four detection methods side by side.*
+
+![TTD optimization](figures/ttd_optimization.png)
+*Earliest detection time across thresholds and consecutive-frame requirements for three detectors — the ratio-threshold method at 0.95 reaches the earliest stable call (670 min).*
+
 **`EXP-23-BZ3167_TTD_Implementation_v42.ipynb`** — methods that go beyond pointwise tests, each tied to a reference in the literature:
 
 - Gaussian Process regression on the growth curves (AMiGA-style, Midani 2021 / Tonner 2017)
@@ -24,6 +30,12 @@ On the susceptible dataset the ratio-threshold method (0.95) gave the earliest s
 - Bootstrap divergence-point analysis (Efron & Tibshirani 1993)
 - Hidden Markov Model state detection (`hmmlearn`, Rabiner 1989)
 - Functional data analysis with permutation testing (Ramsay & Silverman 2005)
+
+![Gaussian-process growth-rate fit](figures/gp_growth_rate_fit.png)
+*Gaussian-process fits of reference vs treatment growth rate with credible bands — the treatment rate drops sharply at drug addition and stays suppressed.*
+
+![Changepoint detection](figures/changepoint_detection.png)
+*PELT changepoints on the reference-minus-treatment growth-rate difference, marking where the treated population's growth first diverges — a model-based alternative to the threshold detectors.*
 
 `ttd_analysis_v40.ipynb` and the `*_fixed_frame30.ipynb` variants are later iterations of the same code; the frame-30 versions rerun the analysis with a corrected starting frame.
 
